@@ -43,16 +43,23 @@ package com.hiring.entities
 		private var muteTxtHover_:Text = new Text("(M)ute", 0, 0, {size:16, color:0xFFFFFF, 
 			outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
 		
-		private var restartTxt_:Text = new Text("(R)estart", 0, 0, {size:16, outlineColor:0x000000, 
-			outlineStrength:2, font: "Adventure"});
-		private var restartTxtHover_:Text = new Text("(R)estart", 0, 0, {size:16, outlineColor:0x000000, 
-			outlineStrength:2, font: "Adventure"});
+		private var hudWasdImg_:Image = new Image(Assets.HUD_WASD);
+		private var hudLife_:Image = new Image(Assets.HUD_LIFE);
+		private var hudHeart_:Image = new Image(Assets.HUD_HEART);
+		private var hudHeart_Empty:Image = new Image(Assets.HUD_HEART_EMPTY);
 		
 		private var gfx_:Graphiclist;
 		
 		
 		public function HUD()
 		{	
+			hudWasdImg_.x = 50;
+			hudWasdImg_.y = 5;
+			
+			hudLife_.x = 580;
+			hudLife_.y = 5;
+			
+			/*
 			Global.pauseBtn = new TextButton(pauseTxt_, 400, 3, 30, 13, pauseGame)
 			Global.pauseBtn.normal = pauseTxt_;
 			Global.pauseBtn.hover = pauseTxtHover_;
@@ -62,11 +69,10 @@ package com.hiring.entities
 			Global.muteBtnTxt.normal = muteTxt_;
 			Global.muteBtnTxt.hover = muteTxtHover_;
 			FP.world.add(Global.muteBtnTxt);
+			*/
 			
-			Global.restartBtn = new TextButton(restartTxt_, 530, 3, 65, 16, restartLevel);
-			Global.restartBtn.normal = restartTxt_;
-			Global.restartBtn.hover = restartTxtHover_;
-			FP.world.add(Global.restartBtn);
+			gfx_ = new Graphiclist(hudWasdImg_, hudLife_);
+			graphic = gfx_;
 		}
 
 		

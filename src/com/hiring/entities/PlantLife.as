@@ -1,6 +1,7 @@
 package com.hiring.entities
 {
 	import com.hiring.Assets;
+	import com.hiring.Global
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
@@ -29,6 +30,8 @@ package com.hiring.entities
 			{
 				plantType_ = plantType;
 			}
+			
+			type = Global.PLANT_LIFE_TYPE;
 		}
 	}
 }

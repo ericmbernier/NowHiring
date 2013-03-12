@@ -23,20 +23,14 @@ package com.hiring
 		public static var
 			GAME_WIDTH:int = 640,
 			GAME_HEIGHT:int = 480,
-			NUM_LEVELS:uint = 9,
-			NUM_SODAS:uint = 30,
 			level:int = 0,
 			levelHeight:int = 0,
-			TILE_COLUMNS:int = 5,
+			TILE_COLUMNS:int = 4,
 			
 			DIR_UP:uint = 1,
 			DIR_DOWN:uint = 2,
 			DIR_LEFT:uint = 3,
 			DIR_RIGHT:uint = 4,
-			
-			newgame:Boolean = false,
-			loadgame:Boolean = false,
-			haveShadow:Boolean = false,
 			
 			menuMusic:Sfx = new Sfx(Assets.MUS_MENU),
 			gameMusic:Sfx = new Sfx(Assets.MUS_GAME),
@@ -57,25 +51,17 @@ package com.hiring
 			keyP:int = Key.P,
 			keyQ:int = Key.Q,
 			keyR:int = Key.R,
-			keyX:int = Key.X,
-			keyZ:int = Key.Z,
+			keyE:int = Key.E,
 			keySpace:int = Key.SPACE,
 			
-			flowerVal:int = 0,			
+			foodCount:int = 2,			
 			hud:HUD,			
-			
 			player:Player,
-			bg:Background,
-			bgEntity:Entity,
-			tvBg:Background,
-			tvBgEntity:Entity,
 			
 			muteBtn:Button,
 			muteBtnTxt:TextButton,
 			pauseBtn:TextButton,
-			restartBtn:TextButton,					
-			
-			TV_SCAN:uint = 1,
+			restartBtn:TextButton,		
 			
 			paused:Boolean = false,
 			pausedScreen:PausedScreen,
@@ -112,14 +98,13 @@ package com.hiring
 			musicVolume:Number = DEFAULT_MUSIC_VOLUME,
 			soundVolume:Number = DEFAULT_SFX_VOLUME,
 			
-			PLAYER_DEATH_HEIGHT:uint = 525,
-			
-			DIRECTION_SIGN_TYPE = "DIRECTION_SIGN",
+			ANIMAL_TYPE:String = "ANIMAL",
+			DIRECTION_SIGN_TYPE:String = "DIRECTION_SIGN",
 			ENEMY_TYPE:String = "ENEMY",
 			GROUND_TYPE:String = "GROUND",
-			DOOR_KEY_TYPE:String = "KEY",
+			PLANT_LIFE_TYPE:String = "PLANT",
 			PLAYER_TYPE:String = "PLAYER",
-			SHADOW_TYPE:String = "SHADOW",
+			SLEEPING_ANIMAL_TYPE:String = "SLEEPING_ANIMAL",
 			SOLID_TYPE:String = "SOLID",
 
 			SHARED_OBJECT:String = "NOW_HIRING_ZOO_EB_SO",

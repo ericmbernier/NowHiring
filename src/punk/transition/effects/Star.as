@@ -71,7 +71,7 @@ package punk.transition.effects
 			
 			// Draw Star
 			_tempSprite.graphics.beginFill(0xFF0000, 1);
-			if(_track == Global.PLAYER_TYPE && Global.level == Global.NUM_LEVELS)
+			if(_track == Global.PLAYER_TYPE)
 			{
 				if(_offset) 
 				{

@@ -4,10 +4,7 @@ package com.hiring.worlds
 	
 	import com.hiring.Assets;
 	import com.hiring.Global;
-	import com.hiring.entities.HUD;
-	import com.hiring.entities.Level;
-	import com.hiring.entities.PlantLife;
-	import com.hiring.entities.Player;
+	import com.hiring.entities.*;
 	
 	import flash.display.BitmapData;
 	
@@ -28,7 +25,7 @@ package com.hiring.worlds
 		
 		public function GameWorld() 
 		{
-			// Global.player = new Player(100, 100);
+		
 		}
 		
 		
@@ -42,9 +39,7 @@ package com.hiring.worlds
 		{
 			removeAll();
 			loadedDoor_ = false;
-			
-			// add(Global.player);
-			
+						
 			add(new Entity(0, 0, tileset_ = new Tilemap(Assets.TILESET_WORLD, 
 				FP.width, FP.height, 32, 32)));
 			
@@ -94,6 +89,13 @@ package com.hiring.worlds
 			
 			Global.hud = new HUD();
 			FP.world.add(Global.hud);
+		
+			FP.world.add(new Enemy(400, 400));
+			
+			Global.player = new Player(100, 100);
+			add(Global.player);
+			
+		
 		}
 		
 		
@@ -103,6 +105,8 @@ package com.hiring.worlds
 			{
 				this.loadWorld();
 			}
+			
+			super.update();
 		}
 	}
 }

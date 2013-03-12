@@ -44,10 +44,23 @@ package com.hiring
 		[Embed(source = '../assets/graphics/tree.png')] public static const TREE:Class;
 		
 		// Objects     
+		[Embed(source = '../assets/graphics/cookie.png')] public static const COOKIE:Class;
 
 		// Collectables
 		
+		// HUD
+		[Embed(source = '../assets/graphics/hudHeart.png')] public static const HUD_HEART:Class;
+		[Embed(source = '../assets/graphics/hudHeartEmpty.png')] public static const HUD_HEART_EMPTY:Class;
+		[Embed(source = '../assets/graphics/hudLife.png')] public static const HUD_LIFE:Class;
+		[Embed(source = '../assets/graphics/hudWasd.png')] public static const HUD_WASD:Class;
+		
 		// Player
+		[Embed(source = '../assets/graphics/player.png')] public static const PLAYER:Class;
+		[Embed(source = '../assets/graphics/dart.png')] public static const DART:Class;
+		[Embed(source = '../assets/graphics/dartUp.png')] public static const DART_UP:Class;
+		
+		// Enemies
+		[Embed(source = '../assets/graphics/monkeySprite.png')] public static const ENEMY_MONKEY:Class;
 		
 		// Music
 		[Embed(source = '../assets/music/HappyWalk.mp3')] public static const MUS_MENU:Class;
