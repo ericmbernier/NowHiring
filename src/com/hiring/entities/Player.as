@@ -48,7 +48,7 @@
         
         override public function update():void
         {
-			FP.console.log(Global.cookieCount)
+			FP.console.log(Global.player.x + " - " + Global.player.y)
 			if (isHurt_)
 			{
 				flingTimer_ += FP.elapsed;
@@ -215,7 +215,12 @@
 			{
 				Global.captureTxt.visible = false;
 			}
-						
+			
+			if (this.x <= -16 || this.x >= 656 || this.y <= -16 || this.y >= 496)
+			{
+				Global.nextLevel = true;
+			}
+			
 			super.update();
         }
         

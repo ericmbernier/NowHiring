@@ -71,6 +71,7 @@ package com.hiring
 			pausedScreen:PausedScreen,
 			restart:Boolean = false,
 			finished:Boolean = false,
+			nextLevel:Boolean = false,
 			
 			TEXT_BTN_NORMAL:uint = 30,
 			TEXT_BTN_HOVER:uint = 34,

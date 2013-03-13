@@ -35,7 +35,44 @@ package com.hiring.worlds
 		}
 		
 		
-		private function loadWorld():void
+		override public function update():void
+		{
+			if (Input.pressed(Global.keyEnter))
+			{
+				this.loadWorld();
+			}
+			
+			if (Global.nextLevel)
+			{
+				Global.nextLevel = false;
+				var xCoord:int = Global.player.x;
+				var yCoord:int = Global.player.y;
+
+				if (Global.player.x <= -16)
+				{
+					xCoord = 40;
+				}
+				else if (Global.player.x >= 656)
+				{
+					xCoord = 565;
+				}
+				else if (Global.player.y <= -16)
+				{
+					yCoord = 40;
+				}
+				else if (Global.player.y >= 496)
+				{
+					yCoord = 410;
+				}
+				
+				this.loadWorld(xCoord, yCoord);
+			}
+			
+			super.update();
+		}
+		
+		
+		private function loadWorld(xCoord:int = 100, yCoord:int = 100):void
 		{
 			Global.level++;
 			
@@ -101,19 +138,11 @@ package com.hiring.worlds
 				FP.world.add(new DirectionSign(500, 175, "testing again"));
 			}
 			
-			Global.player = new Player(100, 100);
+			Global.player = new Player(xCoord, yCoord);
 			add(Global.player);
 		}
 		
 		
-		override public function update():void
-		{
-			if (Input.pressed(Global.keyEnter))
-			{
-				this.loadWorld();
-			}
-			
-			super.update();
-		}
+
 	}
 }
