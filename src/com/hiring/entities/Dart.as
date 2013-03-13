@@ -13,7 +13,7 @@ package com.hiring.entities
 		private const WIDTH:int = 16;
 		private const HEIGHT:int = 7;
 		private const SPEED:Number = 300;
-		private const MAX_DISTANCE:int = 150;
+		private const MAX_DISTANCE:int = 125;
 		
 		private var dir_:int = Global.DIR_UP;
 		private var img_:Image = new Image(Assets.DART);
@@ -22,8 +22,9 @@ package com.hiring.entities
 		public function Dart(xCoord:int, yCoord:int, direction:int)
 		{
 			super(xCoord, yCoord);
-			dir_ = direction;
+			type = Global.DART_TYPE;
 			
+			dir_ = direction;
 			if (dir_ == Global.DIR_UP)
 			{
 				img_ = new Image(Assets.DART_UP);
@@ -32,8 +33,9 @@ package com.hiring.entities
 			else if (dir_ == Global.DIR_DOWN)
 			{
 				img_ = new Image(Assets.DART_UP);
-				img_.flipped = true;	
-				this.setHitbox(HEIGHT, WIDTH);
+				img_.angle = 180;
+				
+				this.setHitbox(HEIGHT, WIDTH, HEIGHT, WIDTH);
 			}
 			else if (dir_ == Global.DIR_LEFT)
 			{
@@ -77,6 +79,16 @@ package com.hiring.entities
 				traveled_ = 0;
 				FP.world.remove(this);
 			}
+		}
+		
+		
+		public function destroy():void
+		{
+			world.add(new Particle(x, y, .5, .5, .1, 0xFF0000));
+			world.add(new Particle(x + 5, y + 5, .5, .5, .1, 0xFFFFFF));
+			world.add(new Particle(x - 5, y - 5, .5, .5, .1, 0xFF0000));
+			
+			FP.world.remove(this);
 		}
 	}
 }

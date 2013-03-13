@@ -12,6 +12,7 @@ package com.hiring
 	import net.flashpunk.Entity;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.utils.Key;
 	
 	
@@ -34,7 +35,6 @@ package com.hiring
 			
 			menuMusic:Sfx = new Sfx(Assets.MUS_MENU),
 			gameMusic:Sfx = new Sfx(Assets.MUS_GAME),
-			endMusic:Sfx = new Sfx(Assets.MUS_ENDING),
 			musicOn:Boolean = true,
 			soundOn:Boolean = true,
 			
@@ -54,9 +54,13 @@ package com.hiring
 			keyE:int = Key.E,
 			keySpace:int = Key.SPACE,
 			
-			foodCount:int = 2,			
+			cookieCount:int = 2,			
 			hud:HUD,			
 			player:Player,
+			MAX_HEALTH:int = 5,
+			START_HEALTH:int = 5,
+			curHealth:int = START_HEALTH,
+			captureTxt:Text,
 			
 			muteBtn:Button,
 			muteBtnTxt:TextButton,
@@ -99,6 +103,7 @@ package com.hiring
 			soundVolume:Number = DEFAULT_SFX_VOLUME,
 			
 			ANIMAL_TYPE:String = "ANIMAL",
+			DART_TYPE:String = "DART_TYPE",
 			DIRECTION_SIGN_TYPE:String = "DIRECTION_SIGN",
 			ENEMY_TYPE:String = "ENEMY",
 			GROUND_TYPE:String = "GROUND",

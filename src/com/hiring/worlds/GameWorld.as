@@ -25,7 +25,7 @@ package com.hiring.worlds
 		
 		public function GameWorld() 
 		{
-		
+			Global.gameMusic.loop(Global.musicVolume);
 		}
 		
 		
@@ -37,6 +37,8 @@ package com.hiring.worlds
 		
 		private function loadWorld():void
 		{
+			Global.level++;
+			
 			removeAll();
 			loadedDoor_ = false;
 						
@@ -90,18 +92,23 @@ package com.hiring.worlds
 			Global.hud = new HUD();
 			FP.world.add(Global.hud);
 		
-			FP.world.add(new Enemy(400, 400));
+			FP.world.add(new Monkey(400, 375));
+
+			if (Global.level == 1)
+			{
+				FP.world.add(new DirectionSign(200, 175, "Testing"));
+				FP.world.add(new DirectionSign(350, 175, "testing again"));
+				FP.world.add(new DirectionSign(500, 175, "testing again"));
+			}
 			
 			Global.player = new Player(100, 100);
 			add(Global.player);
-			
-		
 		}
 		
 		
 		override public function update():void
 		{
-			if (Input.check(Global.keyEnter))
+			if (Input.pressed(Global.keyEnter))
 			{
 				this.loadWorld();
 			}

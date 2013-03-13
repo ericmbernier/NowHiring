@@ -52,7 +52,7 @@ package com.hiring
 		[Embed(source = '../assets/graphics/hudHeart.png')] public static const HUD_HEART:Class;
 		[Embed(source = '../assets/graphics/hudHeartEmpty.png')] public static const HUD_HEART_EMPTY:Class;
 		[Embed(source = '../assets/graphics/hudLife.png')] public static const HUD_LIFE:Class;
-		[Embed(source = '../assets/graphics/hudWasd.png')] public static const HUD_WASD:Class;
+		[Embed(source = '../assets/graphics/hudDart.png')] public static const HUD_DART:Class;
 		
 		// Player
 		[Embed(source = '../assets/graphics/player.png')] public static const PLAYER:Class;
@@ -63,9 +63,8 @@ package com.hiring
 		[Embed(source = '../assets/graphics/monkeySprite.png')] public static const ENEMY_MONKEY:Class;
 		
 		// Music
-		[Embed(source = '../assets/music/HappyWalk.mp3')] public static const MUS_MENU:Class;
-		[Embed(source = '../assets/music/CrocoRocket.mp3')] public static const MUS_GAME:Class;
-		[Embed(source = '../assets/music/ChoroBavario.mp3')] public static const MUS_ENDING:Class;
+		[Embed(source = '../assets/music/HappyWalk.mp3')] public static const MUS_GAME:Class;
+		[Embed(source = '../assets/music/ChoroBavario.mp3')] public static const MUS_MENU:Class;
 		
 		// Sound
 		[Embed(source = '../assets/sound/buttonSelect.mp3')] public static const SND_BUTTON_BACK:Class;

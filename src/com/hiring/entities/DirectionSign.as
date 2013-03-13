@@ -14,7 +14,7 @@ package com.hiring.entities
 	public class DirectionSign extends Entity
 	{
 		private const WIDTH:uint = 24;
-		private const HEIGHT:uint = 40;
+		private const HEIGHT:uint = 26;
 		private const SMALL:uint = 1;
 		private const MEDIUM:uint = 2;
 		private const LARGE:uint = 3;
@@ -65,12 +65,6 @@ package com.hiring.entities
 		private function showDirections():void
 		{
 			var xCoord:int = DEFAULT_X;
-			var xOffset:int = Global.view.x;
-			if (xOffset > 0)
-			{
-				xCoord += xOffset;
-			}
-			
 			directions_ = new Directions(DEFAULT_X, DEFAULT_Y, dirTxt_);
 			TweenMax.from(directions_, 0.50, {y: -105, ease:Quad.easeOut, delay:0, onComplete:null});
 			

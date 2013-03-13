@@ -78,7 +78,6 @@ package com.hiring.worlds
 		public function TitleWorld() 
 		{
 			Global.gameMusic.stop();
-			Global.endMusic.stop();
 			Global.menuMusic.loop(Global.musicVolume);
 			
 			Global.paused = false;
@@ -187,6 +186,8 @@ package com.hiring.worlds
 		private function startGame():void
 		{
 			Playtomic.Log.Play();
+			
+			Global.menuMusic.stop();
 			
 			var bufferImg:Image = new Image(FP.buffer);
 			FP.world = new TransitionWorld(GameWorld, bufferImg, Global.TRANSITION_CIRCLE);
