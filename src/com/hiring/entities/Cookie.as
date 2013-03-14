@@ -22,6 +22,9 @@ package com.hiring.entities
 			super(xCoord, yCoord);
 			this.setHitbox(WIDTH, HEIGHT);
 			graphic = img_;
+			
+			Global.cookieCount--;
+			Global.hud.updateCookies();
 		}
 
 

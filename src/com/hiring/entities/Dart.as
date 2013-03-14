@@ -48,6 +48,9 @@ package com.hiring.entities
 			}
 			
 			graphic = img_;
+			
+			Global.dartCount--;
+			Global.hud.updateDarts();
 		}
 		
 		

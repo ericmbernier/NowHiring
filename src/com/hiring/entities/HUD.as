@@ -51,8 +51,16 @@ package com.hiring.entities
 		private var lifeTxt_:Text = new Text("-Life-", 0, 0, {size:20, color:0xFFFFFF, 
 			outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
 		
+		private var dartX_:Text = new Text("x", 75, 37, {size:16, color:0xFFFFFF, 
+			outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
+		private var cookieX_:Text = new Text("x", 135, 37, {size:16, color:0xFFFFFF, 
+			outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
+		private var dartTxt_:Text;
+		private var cookieTxt_:Text;
+		
+		
 		private var hudArrowsImg_:Image = new Image(Assets.HUD_DART);
-		private var hudHeartEmpty:Image = new Image(Assets.HUD_HEART_EMPTY);
+		private var hudCookieImg_:Image = new Image(Assets.HUD_COOKIE);
 		
 		private var heart1_:Image = new Image(Assets.HUD_HEART);
 		private var heart2_:Image = new Image(Assets.HUD_HEART);
@@ -69,9 +77,15 @@ package com.hiring.entities
 				outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
 			Global.captureTxt.visible = false;
 			
+			dartTxt_ = new Text(Global.dartCount.toString(), 87, 37, {size:16, color:0xFFFFFF, 
+				outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
+			cookieTxt_ = new Text(Global.cookieCount.toString(), 147, 37, {size:16, color:0xFFFFFF, 
+				outlineColor:0x000000, outlineStrength:2, font: "Adventure"});
+			
 			hudArrowsImg_.x = 30;
 			hudArrowsImg_.y = 0;
-			hudArrowsImg_.alpha = 0.85;
+			hudCookieImg_.x = 115;
+			hudCookieImg_..y = 1;
 			
 			lifeTxt_.x = 540;
 			lifeTxt_.y = -5;
@@ -136,8 +150,8 @@ package com.hiring.entities
 			Global.muteBtnTxt.hover = muteTxtHover_;
 			FP.world.add(Global.muteBtnTxt);
 			
-			gfx_ = new Graphiclist(hudArrowsImg_, levelTxt_, levelNum_, lifeTxt_, 
-				heart1_, heart2_, heart3_, heart4_, heart5_, Global.captureTxt);
+			gfx_ = new Graphiclist(hudArrowsImg_, hudCookieImg_, levelTxt_, levelNum_, lifeTxt_, 
+				heart1_, heart2_, heart3_, heart4_, heart5_, Global.captureTxt, dartX_, cookieX_, dartTxt_, cookieTxt_);
 			graphic = gfx_;
 		}
 
@@ -219,11 +233,24 @@ package com.hiring.entities
 			heart5_.x = 610;
 			heart5_.y = 20;
 			
-			gfx_ = new Graphiclist(hudArrowsImg_, levelTxt_, levelNum_, lifeTxt_, 
-				heart1_, heart2_, heart3_, heart4_, heart5_, Global.captureTxt);
+			gfx_ = new Graphiclist(hudArrowsImg_, hudCookieImg_, levelTxt_, levelNum_, lifeTxt_, 
+				heart1_, heart2_, heart3_, heart4_, heart5_, Global.captureTxt, dartX_, cookieX_, dartTxt_, cookieTxt_);
 			graphic = gfx_;
 		}
 		
+		
+		public function updateDarts():void
+		{
+			dartTxt_.text = Global.dartCount.toString();
+			dartTxt_.updateBuffer();
+		}
+		
+		
+		public function updateCookies():void
+		{
+			cookieTxt_.text = Global.cookieCount.toString();
+			cookieTxt_.updateBuffer();
+		}
 
 		private function restartLevel():void
 		{

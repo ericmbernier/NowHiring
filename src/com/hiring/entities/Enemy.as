@@ -50,7 +50,13 @@ package com.hiring.entities
 		            }
 		            else
 		            {
-		                // TODO: CHECK IF WE COLLIDE WITH PLANT LIFE, IF SO MOVE AROUND IT
+						var checkLeft:Entity = collide(Global.PLANT_LIFE_TYPE, x - 2, y);
+						var checkRight:Entity = collide(Global.PLANT_LIFE_TYPE, x + 2, y);
+						if ((checkLeft && !direction_) || (checkRight && direction_))
+						{
+							direction_ = !direction_;
+							walked_ = 0;
+						}
 		            
 		                // Walk around 
 		                if (direction_)

@@ -1,85 +1,10 @@
 <level>
   <width>640</width>
   <height>480</height>
-  <outdoorTileset set="tileset">
-    <tile tx="120" ty="0" x="0" y="420"/>
-    <tile tx="120" ty="0" x="30" y="420"/>
-    <tile tx="120" ty="0" x="60" y="420"/>
-    <tile tx="120" ty="0" x="90" y="420"/>
-    <tile tx="120" ty="0" x="120" y="420"/>
-    <tile tx="120" ty="0" x="150" y="420"/>
-    <tile tx="120" ty="0" x="180" y="420"/>
-    <tile tx="120" ty="0" x="210" y="420"/>
-    <tile tx="120" ty="0" x="240" y="420"/>
-    <tile tx="120" ty="0" x="270" y="420"/>
-    <tile tx="120" ty="0" x="300" y="420"/>
-    <tile tx="120" ty="0" x="330" y="420"/>
-    <tile tx="120" ty="0" x="360" y="420"/>
-    <tile tx="120" ty="0" x="390" y="420"/>
-    <tile tx="120" ty="0" x="420" y="420"/>
-    <tile tx="120" ty="0" x="450" y="420"/>
-    <tile tx="120" ty="0" x="510" y="420"/>
-    <tile tx="120" ty="0" x="540" y="420"/>
-    <tile tx="120" ty="0" x="570" y="420"/>
-    <tile tx="120" ty="0" x="600" y="420"/>
-    <tile tx="120" ty="0" x="630" y="420"/>
-    <tile tx="120" ty="0" x="630" y="450"/>
-    <tile tx="120" ty="0" x="600" y="450"/>
-    <tile tx="120" ty="0" x="570" y="450"/>
-    <tile tx="120" ty="0" x="540" y="450"/>
-    <tile tx="120" ty="0" x="510" y="450"/>
-    <tile tx="120" ty="0" x="480" y="450"/>
-    <tile tx="120" ty="0" x="480" y="420"/>
-    <tile tx="120" ty="0" x="450" y="450"/>
-    <tile tx="120" ty="0" x="420" y="450"/>
-    <tile tx="120" ty="0" x="390" y="450"/>
-    <tile tx="120" ty="0" x="360" y="450"/>
-    <tile tx="120" ty="0" x="330" y="450"/>
-    <tile tx="120" ty="0" x="300" y="450"/>
-    <tile tx="120" ty="0" x="270" y="450"/>
-    <tile tx="120" ty="0" x="240" y="450"/>
-    <tile tx="120" ty="0" x="210" y="450"/>
-    <tile tx="120" ty="0" x="180" y="450"/>
-    <tile tx="120" ty="0" x="150" y="450"/>
-    <tile tx="120" ty="0" x="120" y="450"/>
-    <tile tx="120" ty="0" x="90" y="450"/>
-    <tile tx="120" ty="0" x="60" y="450"/>
-    <tile tx="120" ty="0" x="30" y="450"/>
-    <tile tx="120" ty="0" x="0" y="450"/>
-    <tile tx="120" ty="0" x="630" y="300"/>
-    <tile tx="120" ty="0" x="630" y="330"/>
-    <tile tx="120" ty="0" x="630" y="360"/>
-    <tile tx="120" ty="0" x="630" y="390"/>
-    <tile tx="120" ty="0" x="600" y="390"/>
-    <tile tx="120" ty="0" x="570" y="390"/>
-    <tile tx="120" ty="0" x="570" y="360"/>
-    <tile tx="120" ty="0" x="570" y="330"/>
-    <tile tx="120" ty="0" x="570" y="300"/>
-    <tile tx="120" ty="0" x="600" y="300"/>
-    <tile tx="120" ty="0" x="600" y="330"/>
-    <tile tx="120" ty="0" x="600" y="360"/>
-    <tile tx="120" ty="0" x="240" y="330"/>
-    <tile tx="120" ty="0" x="270" y="330"/>
-    <tile tx="120" ty="0" x="300" y="330"/>
-    <tile tx="120" ty="0" x="330" y="330"/>
-    <tile tx="120" ty="0" x="360" y="330"/>
-  </outdoorTileset>
+  <haveTiles>0</haveTiles>
   <entities>
-    <sign x="142" y="396" text="Run along now.
-A glorious celebration in your honor awaits you!"/>
-    <door x="594" y="268"/>
-    <tree x="416" y="340"/>
-    <flower x="302" y="204"/>
-    <player x="18" y="390"/>
-    <crate x="300" y="298"/>
+    <tree x="480" y="320"/>
+    <tree x="288" y="224"/>
+    <tree x="96" y="128"/>
   </entities>
-  <floors>
-    <rect x="0" y="0" w="640" h="10"/>
-    <rect x="0" y="10" w="10" h="420"/>
-    <rect x="10" y="420" w="570" h="10"/>
-    <rect x="240" y="330" w="150" h="30"/>
-    <rect x="570" y="300" w="70" h="10"/>
-    <rect x="570" y="310" w="10" h="110"/>
-    <rect x="630" y="10" w="10" h="290"/>
-  </floors>
 </level>

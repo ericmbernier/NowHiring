@@ -15,10 +15,9 @@ package com.hiring
 		[Embed(source = '../assets/levels/Level6.oel',  mimeType = "application/octet-stream")] public static const LEVEL6:Class;
 		[Embed(source = '../assets/levels/Level7.oel',  mimeType = "application/octet-stream")] public static const LEVEL7:Class;
 		[Embed(source = '../assets/levels/Level8.oel',  mimeType = "application/octet-stream")] public static const LEVEL8:Class;
-		[Embed(source = '../assets/levels/Level9.oel',  mimeType = "application/octet-stream")] public static const LEVEL9:Class;
 		
 		public static const LEVELS:Array = new Array(LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5,
-				LEVEL6, LEVEL7, LEVEL8, LEVEL9);
+				LEVEL6, LEVEL7, LEVEL8);
 		
 		// TitleWorld art and logos
 		[Embed(source = '../assets/graphics/ebLogo.png')] public static const EB_LOGO:Class;
@@ -32,7 +31,6 @@ package com.hiring
 		[Embed(source = '../assets/graphics/endingScreen.png')] public static const END_SCREEN:Class;
 		
 		// Tilesets	
-		[Embed(source = '../assets/graphics/tiles.png')] public static const TILESHEET:Class;
 		[Embed(source = '../assets/graphics/tileset.png')] public static const TILESET_WORLD:Class;
 		
 		// Gameworld graphics
@@ -53,6 +51,7 @@ package com.hiring
 		[Embed(source = '../assets/graphics/hudHeartEmpty.png')] public static const HUD_HEART_EMPTY:Class;
 		[Embed(source = '../assets/graphics/hudLife.png')] public static const HUD_LIFE:Class;
 		[Embed(source = '../assets/graphics/hudDart.png')] public static const HUD_DART:Class;
+		[Embed(source = '../assets/graphics/hudCookie.png')] public static const HUD_COOKIE:Class;
 		
 		// Player
 		[Embed(source = '../assets/graphics/player.png')] public static const PLAYER:Class;
@@ -61,6 +60,7 @@ package com.hiring
 		
 		// Enemies
 		[Embed(source = '../assets/graphics/monkeySprite.png')] public static const ENEMY_MONKEY:Class;
+		[Embed(source = '../assets/graphics/tigerSprite.png')] public static const ENEMY_TIGER:Class;
 		
 		// Music
 		[Embed(source = '../assets/music/HappyWalk.mp3')] public static const MUS_GAME:Class;

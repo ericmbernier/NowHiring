@@ -54,7 +54,8 @@ package com.hiring
 			keyE:int = Key.E,
 			keySpace:int = Key.SPACE,
 			
-			cookieCount:int = 2,			
+			dartCount:int = 50,
+			cookieCount:int = 2,
 			hud:HUD,			
 			player:Player,
 			MAX_HEALTH:int = 5,
@@ -116,6 +117,6 @@ package com.hiring
 			SHARED_OBJECT:String = "NOW_HIRING_ZOO_EB_SO",
 			shared:SharedObject;
 			
-		public static const grid:int = 30;
+		public static const grid:int = 32;
 	}
 }

@@ -42,13 +42,12 @@
             sprite_.play("walk");
             graphic = sprite_;
 			
-			this.setHitbox(WIDTH - 6, HEIGHT - 6);
+			this.setHitbox(WIDTH - 9, HEIGHT - 9, -3, -4);
 		}
         
         
         override public function update():void
         {
-			FP.console.log(Global.player.x + " - " + Global.player.y)
 			if (isHurt_)
 			{
 				flingTimer_ += FP.elapsed;
