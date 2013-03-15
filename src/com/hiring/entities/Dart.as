@@ -5,6 +5,7 @@ package com.hiring.entities
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.graphics.Image;
 
 	
@@ -19,8 +20,12 @@ package com.hiring.entities
 		private var img_:Image = new Image(Assets.DART);
 		private var traveled_:Number = 0;
 		
+		private var dartSnd_:Sfx = new Sfx(Assets.SND_DART_SHOOT);
+		
 		public function Dart(xCoord:int, yCoord:int, direction:int)
 		{
+			dartSnd_.play(Global.soundVolume);
+			
 			super(xCoord, yCoord);
 			type = Global.DART_TYPE;
 			
@@ -81,6 +86,11 @@ package com.hiring.entities
 			{
 				traveled_ = 0;
 				FP.world.remove(this);
+			}
+			
+			if (this.collide(Global.PLANT_LIFE_TYPE, x, y))
+			{
+				this.destroy();
 			}
 		}
 		

@@ -75,7 +75,14 @@ package com.hiring.worlds
 							new FadeIn({duration:1}),
 							new FadeOut({duration:0.5}));
 						break;
-					}						
+					}
+					case Global.TRANSITION_ROTO:
+					{
+						Transition.to(goto_,
+							new RotoZoomOut({duration:1}),
+							new RotoZoomIn({duration:1}));
+						break;
+					}
 				}
 				
 				transitioned_ = true;

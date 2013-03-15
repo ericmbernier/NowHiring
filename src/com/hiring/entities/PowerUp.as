@@ -1,6 +1,9 @@
 package com.hiring.entities
 {
-	public class PowerUp
+	import net.flashpunk.Entity;
+
+	
+	public class PowerUp extends Entity
 	{
 		public function PowerUp()
 		{

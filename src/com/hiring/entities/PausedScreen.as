@@ -21,21 +21,21 @@ package com.hiring.entities
 		private var pausedScreen_:Image = Image.createRect(Global.GAME_WIDTH, Global.GAME_HEIGHT, 
 			0x000000, 0);
 		private var pTxt_:Text = new Text("P ", 0, 0, {size:40, outlineColor:0x000000, 
-			outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineStrength:3, visible:true, font:"Adventure"});
 		private var aTxt_:Text = new Text("A ", 0, 0, {size:40, outlineColor:0x000000, 
-			outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineStrength:3, visible:true, font:"Adventure"});
 		private var uTxt_:Text = new Text("U ", 0, 0, {size:40, outlineColor:0x000000, 
-			outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineStrength:3, visible:true, font:"Adventure"});
 		private var sTxt_:Text = new Text("S ", 0, 0, {size:40, outlineColor:0x000000, 
-			outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineStrength:3, visible:true, font:"Adventure"});
 		private var eTxt_:Text = new Text("E ", 0, 0, {size:40, outlineColor:0x000000, 
-			outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineStrength:3, visible:true, font:"Adventure"});
 		private var dTxt_:Text = new Text("D ", 0, 0, {size:40, outlineColor:0x000000, 
-			outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineStrength:3, visible:true, font:"Adventure"});
 		private var enterTxt_:Text = new Text("Press ENTER to resume", 0, 0, {size:24, 
-			outlineColor:0x000000, outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineColor:0x000000, outlineStrength:3, visible:true, font:"Adventure"});
 		private var quitTxt_:Text = new Text("Press Q to quit", 0, 0, {size:24, 
-			outlineColor:0x000000, outlineStrength:3, visible:true, font:"Rumpel"});
+			outlineColor:0x000000, outlineStrength:3, visible:true, font:"Adventure"});
 		
 		private var gfx_:Graphiclist;
 
@@ -62,10 +62,10 @@ package com.hiring.entities
 			dTxt_.x = this.x + 370;
 			dTxt_.y = this.y + 135;
 
-			enterTxt_.x = this.x + 200;
+			enterTxt_.x = this.x + 175;
 			enterTxt_.y = this.y + 210;
 			
-			quitTxt_.x = this.x + 230;
+			quitTxt_.x = this.x + 215;
 			quitTxt_.y = this.y + 250;
 			
 			gfx_ = new Graphiclist(pausedScreen_, pTxt_, aTxt_, uTxt_, sTxt_, eTxt_, dTxt_, enterTxt_, quitTxt_);

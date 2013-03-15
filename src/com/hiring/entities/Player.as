@@ -5,6 +5,7 @@
     
     import net.flashpunk.Entity;
     import net.flashpunk.FP;
+    import net.flashpunk.Sfx;
     import net.flashpunk.graphics.Spritemap;
     import net.flashpunk.utils.Input;
        
@@ -30,6 +31,10 @@
 		private var isHurt_:Boolean = false;
 		private var hurtTimer_:Number = 0;
 		private var flingTimer_:Number = 0;
+		
+		private var captureSnd_:Sfx = new Sfx(Assets.SND_CAPTURE_ANIMAL);
+		private var hurtSnd_:Sfx = new Sfx(Assets.SND_HURT);
+		private var cookieSnd_:Sfx = new Sfx(Assets.SND_DROP_COOKIE);
 		
 		
 		public function Player(xCoord:int, yCoord:int)
@@ -177,7 +182,7 @@
             // Check if player dropped Food
             if (Input.pressed(Global.keyE) && Global.cookieCount > 0)
             {
-                Global.cookieCount--;
+				cookieSnd_.play(Global.soundVolume);
                 
                 if (direction_)
                 {
@@ -197,6 +202,13 @@
 				
 				Global.curHealth--;
 				Global.hud.updateHealthBar();
+				
+				if (Global.curHealth <= 0)
+				{
+					Global.gameOver = true;
+				}
+				
+				hurtSnd_.play(Global.soundVolume);
 			}
 			
 			var sleepingAnimal:Enemy = this.collide(Global.SLEEPING_ANIMAL_TYPE, x, y) as Enemy;
@@ -208,6 +220,7 @@
                 {
                     // Add to your zoo shared object
 					sleepingAnimal.capture();
+					captureSnd_.play(Global.soundVolume);
                 }
             }
 			else
@@ -215,9 +228,10 @@
 				Global.captureTxt.visible = false;
 			}
 			
-			if (this.x <= -16 || this.x >= 656 || this.y <= -16 || this.y >= 496)
+			if (!Global.nextLevel && (this.x <= -16 || this.x >= 656 || this.y <= -16 || this.y >= 496))
 			{
 				Global.nextLevel = true;
+				FP.world.remove(this);
 			}
 			
 			super.update();

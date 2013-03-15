@@ -26,6 +26,7 @@ package com.hiring
 		[Embed(source = '../assets/graphics/credits.png')] public static const TITLE_CREDITS_BG:Class;
 		[Embed(source = '../assets/graphics/buffer.png')] public static const TITLE_BUFFER:Class;
 		[Embed(source = '../assets/graphics/titleLion.png')] public static const TITLE_LION:Class;
+		[Embed(source = '../assets/graphics/zooBg.png')] public static const TITLE_ZOO_BG:Class;
 		
 		// Ending
 		[Embed(source = '../assets/graphics/endingScreen.png')] public static const END_SCREEN:Class;
@@ -70,10 +71,12 @@ package com.hiring
 		[Embed(source = '../assets/sound/buttonSelect.mp3')] public static const SND_BUTTON_BACK:Class;
 		[Embed(source = '../assets/sound/buttonHover.mp3')] public static const SND_BUTTON_HOVER:Class;
 		[Embed(source = '../assets/sound/buttonSelect.mp3')] public static const SND_BUTTON_SELECT:Class;
-		[Embed(source = '../assets/sound/death.mp3')] public static const SND_DEATH:Class;
-		[Embed(source = '../assets/sound/door.mp3')] public static const SND_DOOR:Class;
-		[Embed(source = '../assets/sound/flower.mp3')] public static const SND_FLOWER:Class;
-		[Embed(source = '../assets/sound/buttonHover.mp3')] public static const SND_JUMP:Class;
-		[Embed(source = '../assets/sound/buttonSelect.mp3')] public static const SND_SHADOW:Class;
+		[Embed(source = '../assets/sound/hurt.mp3')] public static const SND_HURT:Class;
+		[Embed(source = '../assets/sound/animalHurt.mp3')] public static const SND_ANIMAL_HURT:Class;
+		[Embed(source = '../assets/sound/dartShoot.mp3')] public static const SND_DART_SHOOT:Class;
+		[Embed(source = '../assets/sound/nextLevel.mp3')] public static const SND_NEXT_LEVEL:Class;
+		[Embed(source = '../assets/sound/captureAnimal.mp3')] public static const SND_CAPTURE_ANIMAL:Class;
+		[Embed(source = '../assets/sound/powerup.mp3')] public static const SND_POWERUP:Class;
+		[Embed(source = '../assets/sound/dropCookie.mp3')] public static const SND_DROP_COOKIE:Class;
 	}
 }

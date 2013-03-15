@@ -251,14 +251,6 @@ package com.hiring.entities
 			cookieTxt_.text = Global.cookieCount.toString();
 			cookieTxt_.updateBuffer();
 		}
-
-		private function restartLevel():void
-		{
-			if (!Global.paused)
-			{				
-				// Global.player.killMe();
-			}
-		}
 		
 		
 		private function pauseGame():void

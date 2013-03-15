@@ -62,6 +62,9 @@ package com.hiring
 			START_HEALTH:int = 5,
 			curHealth:int = START_HEALTH,
 			captureTxt:Text,
+			monkeyCount:int = 0,
+			tigerCount:int = 0,
+			lionCount:int = 0,
 			
 			muteBtn:Button,
 			muteBtnTxt:TextButton,
@@ -73,6 +76,7 @@ package com.hiring
 			restart:Boolean = false,
 			finished:Boolean = false,
 			nextLevel:Boolean = false,
+			gameOver:Boolean = false,
 			
 			TEXT_BTN_NORMAL:uint = 30,
 			TEXT_BTN_HOVER:uint = 34,
@@ -90,10 +94,11 @@ package com.hiring
 			TRANSITION_CIRCLE:uint = 1,
 			TRANSITION_STAR:uint = 2,
 			TRANSITION_FADE:uint = 3,
+			TRANSITION_ROTO:uint = 4,
 			
 			// Suggested: Music 55, Sound 85
 			DEFAULT_MUSIC_VOLUME:Number = 0.55,
-			DEFAULT_SFX_VOLUME:Number = 0.85 ,
+			DEFAULT_SFX_VOLUME:Number = 0.50 ,
 			DEFAULT_VOICE_VOLUME:Number = 1,
 			PAUSED_MUSIC_VOLUME:Number = 0.15,
 			LEVEL_COMPLETE_VOLUME:Number = 0.15,
@@ -114,7 +119,7 @@ package com.hiring
 			SLEEPING_ANIMAL_TYPE:String = "SLEEPING_ANIMAL",
 			SOLID_TYPE:String = "SOLID",
 
-			SHARED_OBJECT:String = "NOW_HIRING_ZOO_EB_SO",
+			SHARED_OBJECT:String = "NOW_HIRING_ZOO_EB_SO_7DRL",
 			shared:SharedObject;
 			
 		public static const grid:int = 32;

@@ -15,6 +15,7 @@ package com.hiring.worlds
 	
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Tilemap;
@@ -39,6 +40,9 @@ package com.hiring.worlds
 		
 		private var tileset_:Tilemap;
 		private var loadedDoor_:Boolean = false;
+		private var transitioned_:Boolean = false;
+		
+		private var nextLevelSnd_:Sfx = new Sfx(Assets.SND_NEXT_LEVEL);
 		
 		
 		public function GameWorld() 
@@ -49,44 +53,107 @@ package com.hiring.worlds
 		
 		override public function begin():void 
 		{	
+			Global.curHealth = Global.MAX_HEALTH;
+			Global.monkeyCount = 0;
+			Global.lionCount = 0;
+			Global.tigerCount = 0;
+			
 			loadWorld();
 		}
 		
 		
 		override public function update():void
 		{
-			if (Input.pressed(Global.keyEnter))
+			// Only update if the game is not paused
+			if (Global.paused)
 			{
-				this.loadWorld();
-			}
-			
-			if (Global.nextLevel)
-			{
-				Global.nextLevel = false;
-				var xCoord:int = Global.player.x;
-				var yCoord:int = Global.player.y;
-
-				if (Global.player.x <= -16)
+				if (Input.pressed(Global.keyEnter) || Input.pressed(Global.keyP))
 				{
-					xCoord = 565;
-				}
-				else if (Global.player.x >= 656)
-				{
-					xCoord = 40;
-				}
-				else if (Global.player.y <= -16)
-				{
-					yCoord = 410;
-				}
-				else if (Global.player.y >= 496)
-				{
-					yCoord = 40;
+					Global.pausedScreen.unpauseGame();
 				}
 				
-				this.loadWorld(xCoord, yCoord);
+				// Allow the player to mute the game from the paused screen
+				if (Input.pressed(Global.keyM))
+				{
+					Global.pausedScreen.pausedMute();
+				}
+				
+				if (Input.pressed(Global.keyQ))
+				{
+					var bufferImg:Image = new Image(FP.buffer);
+					FP.world.removeAll();
+					FP.world = new TransitionWorld(TitleWorld, bufferImg, Global.TRANSITION_CIRCLE);
+				}
 			}
-			
-			super.update();
+			else
+			{
+				if (Global.gameOver)
+				{
+					if (!transitioned_)
+					{
+						var tempLevel:int = Global.shared.data.bestLevel;
+						if (tempLevel < Global.level)
+						{
+							Global.shared.data.bestLevel = Global.level;
+						}
+						
+						Global.shared.data.lastLevel = Global.level;
+						Global.shared.data.monkeys += Global.monkeyCount;
+						Global.shared.data.tigers += Global.tigerCount;
+						Global.shared.data.lions += Global.lionCount;
+						
+						transitioned_ = true;
+						var bufferImg:Image = new Image(FP.buffer);
+						FP.world = new TransitionWorld(TitleWorld, bufferImg, Global.TRANSITION_ROTO);
+					}
+				}
+				else
+				{
+					if (Input.pressed(Global.keyEnter))
+					{
+						this.loadWorld();
+					}
+					
+					if (Input.pressed(Global.keyP))
+					{
+						Global.pausedScreen.pauseGame();
+					}
+					
+					if (Input.pressed(Global.keyM))
+					{
+						Global.hud.mute();
+					}
+					
+					if (Global.nextLevel)
+					{
+						Global.nextLevel = false;
+						var xCoord:int = Global.player.x;
+						var yCoord:int = Global.player.y;
+		
+						if (Global.player.x < 0)
+						{
+							xCoord = 565;
+						}
+						else if (Global.player.x >= 640)
+						{
+							xCoord = 40;
+						}
+						else if (Global.player.y <= 0)
+						{
+							yCoord = 410;
+						}
+						else if (Global.player.y >= 480)
+						{
+							yCoord = 40;
+						}
+						
+						FP.world.remove(Global.player);
+						this.loadWorld(xCoord, yCoord);
+					}
+				}
+				
+				super.update();
+			}
 		}
 		
 		
@@ -147,7 +214,7 @@ package com.hiring.worlds
 			
 			// Add randomization here. This is rather weak, as this is my first roguelike
 			if (Global.level > 1)
-			{
+			{	
 				var levelToLoad:int = FP.rand(Assets.LEVELS.length);
 				var file:ByteArray = new Assets.LEVELS[levelToLoad];
 				var str:String = file.readUTFBytes(file.length);
@@ -176,9 +243,6 @@ package com.hiring.worlds
 				}
 			}
 			
-			Global.hud = new HUD();
-			FP.world.add(Global.hud);
-		
 			// Add enemy randomization here, checking to not place in plantlife
 			FP.world.add(new Monkey(400, 375));
 
@@ -193,9 +257,13 @@ package com.hiring.worlds
 			
 			Global.player = new Player(xCoord, yCoord);
 			add(Global.player);
+			
+			Global.hud = new HUD();
+			FP.world.add(Global.hud);
+			
+			Global.pausedScreen = new PausedScreen(0, 0);
+			Global.pausedScreen.visible = false;
+			this.add(Global.pausedScreen);
 		}
-		
-		
-
 	}
 }

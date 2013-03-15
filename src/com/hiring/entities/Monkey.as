@@ -32,6 +32,8 @@ package com.hiring.entities
 		
 		override public function capture():void
 		{
+			Global.monkeyCount++;
+			
 			world.add(new Particle(x, y, .5, .5, .1, 0xAA7951));
 			world.add(new Particle(x + 5, y + 5, .5, .5, .1, 0xF9D9AD));
 			world.add(new Particle(x - 5, y - 5, .5, .5, .1, 0xAA7951));

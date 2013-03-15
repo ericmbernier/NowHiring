@@ -6,6 +6,7 @@ package com.hiring.entities
     import net.flashpunk.Entity;
     import net.flashpunk.FP;
     import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.Sfx;
         
     
     public class Enemy extends Entity
@@ -19,6 +20,7 @@ package com.hiring.entities
 		protected var sleeping_:Boolean = false;
 		protected var sprite_:Spritemap;
 		
+		private var hurtSnd_:Sfx = new Sfx(Assets.SND_ANIMAL_HURT);
 		
 		public function Enemy(xCoord:int, yCoord:int)
 		{
@@ -94,6 +96,8 @@ package com.hiring.entities
         
 		private function takeDamage():void
 		{
+			hurtSnd_.play(Global.soundVolume);
+			
 			hitPoints_--;
 			if (hitPoints_ <= 0)
 			{

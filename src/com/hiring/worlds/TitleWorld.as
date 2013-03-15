@@ -48,22 +48,49 @@ package com.hiring.worlds
 		
 		// Text on the main menu screen
 		private var playGameTxt_:Text = new Text("Play Game", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
-		private var playGameTxtHover_:Text = new Text("Play Game", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
+		private var playGameTxtHover_:Text = new Text("Play Game", 0, 20, {size:28, color:0xFFFFFF, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
 		private var creditsTxt_:Text = new Text("Credits", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
-		private var creditsTxtHover_:Text = new Text("Credits", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
+		private var creditsTxtHover_:Text = new Text("Credits", 0, 20, {size:28, color:0xFFFFFF, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
+		private var zooTxt_:Text = new Text("Your Zoo", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
+		private var zooTxtHover_:Text = new Text("Your Zoo", 0, 20, {size:28, color:0xFFFFFF, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
 		private var backTxt_:Text = new Text("Back", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:2});
-		private var backTxtHover_:Text = new Text("Back", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:2});
+		private var backTxtHover_:Text = new Text("Back", 0, 20, {size:28, color:0xFFFFFF, font:"Adventure", outlineColor:0x000000, outlineStrength:2});
 		private var gameByTxt_:Text = new Text("A Game by Eric Bernier", 0, 0, {size:23, color:0xEDE0CC, 
 				font:"Adventure", outlineColor:0x000000, outlineStrength:2});
+
+		// Zoo Stats Text
+		private var zooBestLevelTxt_:Text = new Text("Best Level: ", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooBestLevelNum_:Text = new Text("", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooLastLevelTxt_:Text = new Text("Last Level: ", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooLastLevelNum_:Text = new Text("", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooMonkeysTxt_:Text = new Text("Monkeys captured: ", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooMonkeysNum_:Text = new Text("", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooTigersTxt_:Text = new Text("Tigers captured:", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooTigersNum_:Text = new Text("", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooLionsTxt_:Text = new Text("Lions captured: ", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooLionsNum_:Text = new Text("", 0, 0, {size:23, color:0xEDE0CC, 
+			font:"Adventure", outlineColor:0x000000, outlineStrength:2, visible:false});
+		private var zooBg_:Image = new Image(Assets.TITLE_ZOO_BG);
 		
 		// Buttons on the title screen
 		private var playGameBtn_:TextButton;
 		private var creditsBtn_:TextButton;
+		private var zooBtn_:TextButton;
 		private var backBtn_:TextButton;
 		
 		// Booleans used to keep track of which screen of the Title World the player is viewing
 		private var viewingTitle_:Boolean = true;
 		private var viewingCredits_:Boolean = false;
+		private var viewingZoo_:Boolean = false;
 		
 		private var buttonHoverSnd_:Sfx = new Sfx(Assets.SND_BUTTON_HOVER);
 		private var buttonSelectSnd_:Sfx = new Sfx(Assets.SND_BUTTON_SELECT);
@@ -106,22 +133,73 @@ package com.hiring.worlds
 			creditsTxtHover_.width = FP.width;
 			creditsTxtHover_.y -=  28;
 			
+			zooTxt_.width = FP.width;
+			zooTxt_.y -= 28;
+			zooTxtHover_.width = FP.width;
+			zooTxtHover_.y -=  28;
+			
 			// Initialize all of the buttons on the main menu
-			playGameBtn_ = new TextButton(playGameTxt_, 160, 440, 155, 30, startGame);
+			playGameBtn_ = new TextButton(playGameTxt_, 50, 440, 155, 30, startGame);
 			playGameBtn_.normal = playGameTxt_;
 			playGameBtn_.hover = playGameTxtHover_;
 			playGameBtn_.setRollOverSound(buttonHoverSnd_);
 			playGameBtn_.setSelectSound(buttonSelectSnd_);
 			this.add(playGameBtn_);
 			
-			creditsBtn_ = new TextButton(creditsTxt_, 355, 440, 110, 30, viewCredits);
+			creditsBtn_ = new TextButton(creditsTxt_, 255, 440, 110, 30, viewCredits);
 			creditsBtn_.normal = creditsTxt_;
 			creditsBtn_.hover = creditsTxtHover_;
 			creditsBtn_.setRollOverSound(buttonHoverSnd_);
 			creditsBtn_.setSelectSound(buttonSelectSnd_);
 			this.add(creditsBtn_);
 			
+			zooBtn_ = new TextButton(zooTxt_, 420, 440, 130, 30, viewZoo);
+			zooBtn_.normal = zooTxt_;
+			zooBtn_.hover = zooTxtHover_;
+			zooBtn_.setRollOverSound(buttonHoverSnd_);
+			zooBtn_.setSelectSound(buttonSelectSnd_);
+			this.add(zooBtn_);
+			
 			this.addGraphic(darkScreen_);
+			
+			zooBg_.x = 60;
+			zooBg_.y = Global.GAME_HEIGHT + 15;
+			this.addGraphic(zooBg_);
+			
+			zooBestLevelTxt_.x = 210;
+			zooBestLevelTxt_.y = 115;
+			zooBestLevelNum_.x = 345;
+			zooBestLevelNum_.y = 115;
+			this.addGraphic(zooBestLevelTxt_);
+			this.addGraphic(zooBestLevelNum_);
+			
+			zooLastLevelTxt_.x = 215;
+			zooLastLevelTxt_.y = 145;
+			zooLastLevelNum_.x = 345;
+			zooLastLevelNum_.y = 145;
+			this.addGraphic(zooLastLevelTxt_);
+			this.addGraphic(zooLastLevelNum_);
+			
+			zooMonkeysTxt_.x = 160;
+			zooMonkeysTxt_.y = 175;
+			zooMonkeysNum_.x = 385;
+			zooMonkeysNum_.y = 175;
+			this.addGraphic(zooMonkeysTxt_);
+			this.addGraphic(zooMonkeysNum_);
+			
+			zooTigersTxt_.x = 185;
+			zooTigersTxt_.y = 205;
+			zooTigersNum_.x = 385;
+			zooTigersNum_.y = 205;
+			this.addGraphic(zooTigersTxt_);
+			this.addGraphic(zooTigersNum_);
+			
+			zooLionsTxt_.x = 195;
+			zooLionsTxt_.y = 235;
+			zooLionsNum_.x = 385;
+			zooLionsNum_.y = 235;
+			this.addGraphic(zooLionsTxt_);
+			this.addGraphic(zooLionsNum_);
 			
 			creditsBg_.x = 60;
 			creditsBg_.y = Global.GAME_HEIGHT + 15;
@@ -156,6 +234,32 @@ package com.hiring.worlds
 			if (Global.shared.data.level == undefined || levelCheck == 1)
 			{
 				Global.shared.flush();			
+			}
+			
+			// Check the shared object for stats, prior plays, etc
+			Global.shared = SharedObject.getLocal(Global.SHARED_OBJECT);
+			if (Global.shared.data.bestLevel == undefined)
+			{
+				// Grey out Zoo button
+				zooTxt_.color = 0x333333;
+				zooTxtHover_.color = 0x333333;
+				zooBtn_.setHitbox(0, 0);
+				
+				Global.shared.data.bestLevel = 0;
+				Global.shared.data.lastLevel = 0;
+				Global.shared.data.monkeys = 0;
+				Global.shared.data.tigers = 0;
+				Global.shared.data.lions = 0;
+				
+			}
+			else
+			{
+				// Set zoo stats, as well as the zoo button
+				zooBestLevelNum_.text = Global.shared.data.bestLevel;
+				zooLastLevelNum_.text = Global.shared.data.lastLevel;
+				zooMonkeysNum_.text = Global.shared.data.monkeys;
+				zooTigersNum_.text = Global.shared.data.tigers;
+				zooLionsNum_.text = Global.shared.data.lions;
 			}
 		}
 		
@@ -199,9 +303,43 @@ package com.hiring.worlds
 			this.clearMainTitleScreen();
 			viewingCredits_ = true;
 			viewingTitle_ = false;
+			viewingZoo_ = false;
 			
 			TweenMax.to(darkScreen_, 0.75, {alpha:0.85, repeat: 0, yoyo:false, ease:Quad.easeIn});
 			TweenMax.to(creditsBg_, 1.0, {y: 55, repeat:0, yoyo:false, ease:Back.easeOut, onComplete:showBackBtn});
+			
+			if (backBtn_ != null)
+			{
+				this.remove(backBtn_);
+			}
+			
+			if (backBtn_ != null)
+			{
+				this.remove(backBtn_);
+			}
+			
+			backTxt_.width = FP.width;
+			backTxt_.y = 0;
+			backTxtHover_.width = FP.width;
+			backTxtHover_.y = 0;
+			
+			backBtn_ = new TextButton(backTxt_, 280, 335, 77, 30, backToTitle);
+			backBtn_.normal = backTxt_;
+			backBtn_.hover = backTxtHover_;
+			backBtn_.setRollOverSound(buttonHoverSnd_);
+			backBtn_.setSelectSound(buttonBackSnd_);
+		}
+		
+		
+		private function viewZoo():void
+		{
+			this.clearMainTitleScreen();
+			viewingCredits_ = false;
+			viewingTitle_ = false;
+			viewingZoo_ = true;
+			
+			TweenMax.to(darkScreen_, 0.75, {alpha:0.85, repeat: 0, yoyo:false, ease:Quad.easeIn});
+			TweenMax.to(zooBg_, 1.0, {y: 55, repeat:0, yoyo:false, ease:Back.easeOut, onComplete:showZooInfo});
 			
 			if (backBtn_ != null)
 			{
@@ -233,6 +371,9 @@ package com.hiring.worlds
 			
 			creditsBtn_.visible = false;
 			creditsBtn_.setHitbox(0, 0);
+			
+			zooBtn_.visible = false;
+			zooBtn_.setHitbox(0, 0);
 		}
 		
 		
@@ -248,12 +389,33 @@ package com.hiring.worlds
 				
 				viewingCredits_ = false;
 			}
+			else if (viewingZoo_)
+			{
+				zooBestLevelTxt_.visible = false;
+				zooBestLevelNum_.visible = false;
+				zooLastLevelTxt_.visible = false;
+				zooLastLevelNum_.visible = false;
+				zooMonkeysTxt_.visible = false;
+				zooMonkeysNum_.visible = false;
+				zooTigersTxt_.visible = false;
+				zooTigersNum_.visible = false;
+				zooLionsTxt_.visible = false;
+				zooLionsNum_.visible = false;
+				
+				TweenMax.to(darkScreen_, 0.50, {alpha:0, repeat: 0, yoyo:false, ease:Quad.easeIn});
+				TweenMax.to(zooBg_, 0.50, {y: Global.GAME_HEIGHT + 15, repeat:0, yoyo:false, ease:Back.easeIn});
+				
+				viewingZoo_ = false;
+			}
 			
 			playGameBtn_.visible = true;
 			playGameBtn_.setHitbox(155, 30, 0, 0);
 			
 			creditsBtn_.visible = true;
 			creditsBtn_.setHitbox(120, 30, 0, 0);
+			
+			zooBtn_.visible = true;
+			zooBtn_.setHitbox(130, 30, 0, 0);
 			
 			if (backBtn_ != null)
 			{
@@ -308,6 +470,23 @@ package com.hiring.worlds
 		{	
 			var url:String = new String("http://www.ericbernier.com");
 			navigateToURL(new URLRequest(url));
+		}
+
+		
+		private function showZooInfo():void
+		{
+			zooBestLevelTxt_.visible = true;
+			zooBestLevelNum_.visible = true;
+			zooLastLevelTxt_.visible = true;
+			zooLastLevelNum_.visible = true;
+			zooMonkeysTxt_.visible = true;
+			zooMonkeysNum_.visible = true;
+			zooTigersTxt_.visible = true;
+			zooTigersNum_.visible = true;
+			zooLionsTxt_.visible = true;
+			zooLionsNum_.visible = true;
+			
+			this.add(backBtn_);
 		}
 		
 		
