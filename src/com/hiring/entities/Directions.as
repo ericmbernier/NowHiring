@@ -23,10 +23,9 @@ package com.hiring.entities
 			x = xCoord;
 			y = yCoord;
 			
-			dirText_ = new Text(directions, x - 35, y, {size:20, color:0x000000, font:"Rumpel", wordWrap:true, width:WIDTH});
+			dirText_ = new Text(directions, x - 35, y, {size:16, color:0x000000, font:"Adventure", wordWrap:true, width:WIDTH});
 			
 			gfx_ = new Graphiclist(dirBg_, dirText_);
-			
 			this.graphic = gfx_;
 			layer = -9999;
 		}

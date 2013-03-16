@@ -152,8 +152,7 @@ package com.hiring.entities
 			if (cookieIndex > -1)
 			{
 				var cookie:Cookie = cookieList[cookieIndex];
-				this.moveTowards(cookie.x, cookie.y, speed_ * FP.elapsed, 
-					Global.PLANT_LIFE_TYPE, true);
+				this.moveTowards(cookie.x, cookie.y, speed_ * FP.elapsed, Global.PLANT_LIFE_TYPE, true);
 				
 				return true;
 			}

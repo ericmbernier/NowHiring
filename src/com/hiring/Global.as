@@ -3,7 +3,6 @@ package com.hiring
 	import com.hiring.entities.HUD;
 	import com.hiring.entities.PausedScreen;
 	import com.hiring.entities.Player;
-	import com.hiring.util.Background;
 	import com.hiring.util.Button;
 	import com.hiring.util.TextButton;
 	
@@ -25,8 +24,8 @@ package com.hiring
 			GAME_WIDTH:int = 640,
 			GAME_HEIGHT:int = 480,
 			level:int = 0,
-			levelHeight:int = 0,
 			TILE_COLUMNS:int = 4,
+			lastLevelLoaded:int = 1,
 			
 			DIR_UP:uint = 1,
 			DIR_DOWN:uint = 2,
@@ -54,7 +53,7 @@ package com.hiring
 			keyE:int = Key.E,
 			keySpace:int = Key.SPACE,
 			
-			dartCount:int = 50,
+			dartCount:int = 75,
 			cookieCount:int = 2,
 			hud:HUD,			
 			player:Player,
@@ -69,12 +68,9 @@ package com.hiring
 			muteBtn:Button,
 			muteBtnTxt:TextButton,
 			pauseBtn:TextButton,
-			restartBtn:TextButton,		
 			
 			paused:Boolean = false,
 			pausedScreen:PausedScreen,
-			restart:Boolean = false,
-			finished:Boolean = false,
 			nextLevel:Boolean = false,
 			gameOver:Boolean = false,
 			
@@ -104,8 +100,6 @@ package com.hiring
 			LEVEL_COMPLETE_VOLUME:Number = 0.15,
 			PAUSE_VOLUME:Number = 0.10,
 			
-			onMovingPlatform:Boolean = false,
-			
 			musicVolume:Number = DEFAULT_MUSIC_VOLUME,
 			soundVolume:Number = DEFAULT_SFX_VOLUME,
 			
@@ -116,8 +110,8 @@ package com.hiring
 			GROUND_TYPE:String = "GROUND",
 			PLANT_LIFE_TYPE:String = "PLANT",
 			PLAYER_TYPE:String = "PLAYER",
+			POWERUP_TYPE:String = "POWERUP",
 			SLEEPING_ANIMAL_TYPE:String = "SLEEPING_ANIMAL",
-			SOLID_TYPE:String = "SOLID",
 
 			SHARED_OBJECT:String = "NOW_HIRING_ZOO_EB_SO_7DRL",
 			shared:SharedObject;

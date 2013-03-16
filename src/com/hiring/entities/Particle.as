@@ -17,6 +17,10 @@ package com.hiring.entities
 	import net.flashpunk.utils.Ease;
 	
 	
+	/**
+	 * 
+	 * Courtesy of Chevy Ray Johnston's Ludum Dare entry 'FleeBuster'
+	 */
 	public class Particle extends Entity 
 	{
 		public static const RADIUS:Number = 8;

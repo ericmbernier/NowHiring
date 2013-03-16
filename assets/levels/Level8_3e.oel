@@ -1,0 +1,19 @@
+<level>
+  <width>640</width>
+  <height>480</height>
+  <haveTiles>0</haveTiles>
+  <entities>
+    <bush x="288" y="96"/>
+    <bush x="288" y="352"/>
+    <bush x="288" y="320"/>
+    <bush x="288" y="288"/>
+    <bush x="288" y="256"/>
+    <bush x="288" y="224"/>
+    <bush x="288" y="192"/>
+    <bush x="288" y="128"/>
+    <bush x="288" y="160"/>
+    <monkey x="192" y="128"/>
+    <monkey x="352" y="320"/>
+    <tiger x="288" y="416"/>
+  </entities>
+</level>

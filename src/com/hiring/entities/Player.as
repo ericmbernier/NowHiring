@@ -15,11 +15,11 @@
 		private const WIDTH:int = 32;
 		private const HEIGHT:int = 32;
 		private const SHOOT_LAG:Number = 0.15;
-		private const HURT_DURATION:Number = 1;
+		private const HURT_DURATION:Number = 1.5;
 		private const FLING_DURATION:Number = 0.10;
 		private const FLINGBACK_SPEED:int = 250;
 		
-		private var speed_:int = 110;
+		private var speed_:int = 125;
 		private var chaseDistance_:int = 20;
 		private var walkDistance_:int = 60;
 		private var walked_:int = 0;
@@ -144,7 +144,7 @@
 			}
 			
             // Check the shooting controls
-			if (!shooting_)
+			if (!shooting_ && Global.dartCount > 0)
 			{
 	            if (Input.check(Global.keyUp))
 	            {
@@ -226,6 +226,12 @@
 			else
 			{
 				Global.captureTxt.visible = false;
+			}
+			
+			var powerup:PowerUp = this.collide(Global.POWERUP_TYPE, x, y) as PowerUp;
+			if (powerup)
+			{
+				powerup.collect();
 			}
 			
 			if (!Global.nextLevel && (this.x <= -16 || this.x >= 656 || this.y <= -16 || this.y >= 496))

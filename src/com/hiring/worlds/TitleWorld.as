@@ -9,7 +9,6 @@ package com.hiring.worlds
 	import com.greensock.plugins.TransformMatrixPlugin;
 	import com.hiring.Assets;
 	import com.hiring.Global;
-	import com.hiring.util.Background;
 	import com.hiring.util.Button;
 	import com.hiring.util.TextButton;
 	
@@ -106,8 +105,9 @@ package com.hiring.worlds
 		{
 			Global.gameMusic.stop();
 			Global.menuMusic.loop(Global.musicVolume);
-			
+			Global.gameOver = false;
 			Global.paused = false;
+			Global.level = 0;
 			
 			gameByTxt_.x = 190;
 			gameByTxt_.y = 5;
@@ -121,8 +121,7 @@ package com.hiring.worlds
 			
 			lion_.x = 110;
 			lion_.y = 80;
-			
-			// Initialize and set all of the text on the main screen
+
 			playGameTxt_.width = FP.width;
 			playGameTxt_.y -= 28;
 			playGameTxtHover_.width = FP.width;
@@ -228,7 +227,6 @@ package com.hiring.worlds
 
 			this.add(Global.muteBtn);
 			
-			// Get our shared object for the game to determine levels beaten
 			Global.shared = SharedObject.getLocal(Global.SHARED_OBJECT);
 			var levelCheck:int = int(Global.shared.data.level);
 			if (Global.shared.data.level == undefined || levelCheck == 1)
@@ -236,7 +234,6 @@ package com.hiring.worlds
 				Global.shared.flush();			
 			}
 			
-			// Check the shared object for stats, prior plays, etc
 			Global.shared = SharedObject.getLocal(Global.SHARED_OBJECT);
 			if (Global.shared.data.bestLevel == undefined)
 			{
@@ -289,10 +286,7 @@ package com.hiring.worlds
 		
 		private function startGame():void
 		{
-			Playtomic.Log.Play();
-			
-			Global.menuMusic.stop();
-			
+			Global.menuMusic.stop();	
 			var bufferImg:Image = new Image(FP.buffer);
 			FP.world = new TransitionWorld(GameWorld, bufferImg, Global.TRANSITION_CIRCLE);
 		}
@@ -305,7 +299,7 @@ package com.hiring.worlds
 			viewingTitle_ = false;
 			viewingZoo_ = false;
 			
-			TweenMax.to(darkScreen_, 0.75, {alpha:0.85, repeat: 0, yoyo:false, ease:Quad.easeIn});
+			TweenMax.to(darkScreen_, 0.75, {alpha:0.80, repeat: 0, yoyo:false, ease:Quad.easeIn});
 			TweenMax.to(creditsBg_, 1.0, {y: 55, repeat:0, yoyo:false, ease:Back.easeOut, onComplete:showBackBtn});
 			
 			if (backBtn_ != null)
@@ -338,7 +332,7 @@ package com.hiring.worlds
 			viewingTitle_ = false;
 			viewingZoo_ = true;
 			
-			TweenMax.to(darkScreen_, 0.75, {alpha:0.85, repeat: 0, yoyo:false, ease:Quad.easeIn});
+			TweenMax.to(darkScreen_, 0.75, {alpha:0.80, repeat: 0, yoyo:false, ease:Quad.easeIn});
 			TweenMax.to(zooBg_, 1.0, {y: 55, repeat:0, yoyo:false, ease:Back.easeOut, onComplete:showZooInfo});
 			
 			if (backBtn_ != null)
@@ -449,29 +443,6 @@ package com.hiring.worlds
 			Global.gameMusic.volume = Global.musicVolume;
 		}
 		
-		
-		private function resetSharedObjectsData():void
-		{
-			// Reset the scores for each level
-			var levelScores:Array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-			Global.shared.data.levelScores = levelScores;
-			Global.shared.flush();
-			
-			if (Global.shared.data.deaths == undefined)
-			{
-				Global.shared.data.time = 0;
-				Global.shared.data.deaths = 0;
-				Global.shared.data.cells = 0;
-			}
-		}
-		
-		
-		private function goToEricsSite():void
-		{	
-			var url:String = new String("http://www.ericbernier.com");
-			navigateToURL(new URLRequest(url));
-		}
-
 		
 		private function showZooInfo():void
 		{

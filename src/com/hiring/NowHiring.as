@@ -79,10 +79,6 @@ package com.hiring
 		// Set this to true to enable Playtomic logging
 		private var playtomic_:Boolean = true;
 		
-		private var SWFID:int = 982743;
-		private var GUID:String = "9e28bc4a82fc4c90";
-		private var API_Key:String = "907b2132c3ca454e84f3168214d875";
-		
 		private var mustClick_:Boolean = true;
 		private var loadPreloader_:Boolean = true;
 		private var linkAdded_:Boolean = false;
@@ -90,10 +86,7 @@ package com.hiring
 
 				
 		public function NowHiring()
-		{	
-			// Log the entry to PlayTomic
-			// Log.View(PT_SWF_ID:int, PT_GUID:string, PT_API:string, root.loaderInfo.loaderURL);
-			Log.View(SWFID, GUID, API_Key, root.loaderInfo.loaderURL);
+		{
 			this.init();
 		}
 		

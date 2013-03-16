@@ -18,6 +18,7 @@ package com.hiring.worlds
 	import net.flashpunk.Sfx;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.graphics.Tilemap;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
@@ -25,7 +26,11 @@ package com.hiring.worlds
 	
 	public class GameWorld extends World 
 	{
-		private const LEVEL_TYPES:int = 7;
+		private const POWERUP_CHANCE:int = 3;
+		private const POWERUP_DART:int = 1;
+		private const POWERUP_COOKIE:int = 2;
+		private const POWERUP_LOC:int = 5;
+		private const MAX_ENEMIES:int = 5;
 		private const BUSH:int = 0;
 		private const TREE:int = 1;
 		
@@ -41,6 +46,9 @@ package com.hiring.worlds
 		private var tileset_:Tilemap;
 		private var loadedDoor_:Boolean = false;
 		private var transitioned_:Boolean = false;
+		
+		private var moveTxt_:Text = new Text("Move with the WASD keys!", 0, 20, {size:28, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:4});
+		private var toNextLevelTxt_:Text = new Text("To next level!", 0, 0, {size:14, color:0xEDE0CC, font:"Adventure", outlineColor:0x000000, outlineStrength:2});
 		
 		private var nextLevelSnd_:Sfx = new Sfx(Assets.SND_NEXT_LEVEL);
 		
@@ -103,17 +111,12 @@ package com.hiring.worlds
 						Global.shared.data.lions += Global.lionCount;
 						
 						transitioned_ = true;
-						var bufferImg:Image = new Image(FP.buffer);
-						FP.world = new TransitionWorld(TitleWorld, bufferImg, Global.TRANSITION_ROTO);
+						var buffImg_:Image = new Image(FP.buffer);
+						FP.world = new TransitionWorld(TitleWorld, buffImg_, Global.TRANSITION_ROTO);
 					}
 				}
 				else
 				{
-					if (Input.pressed(Global.keyEnter))
-					{
-						this.loadWorld();
-					}
-					
 					if (Input.pressed(Global.keyP))
 					{
 						Global.pausedScreen.pauseGame();
@@ -161,6 +164,12 @@ package com.hiring.worlds
 		{
 			Global.level++;
 			
+			// Add one HP upon completion of each level
+			if (Global.curHealth < Global.MAX_HEALTH)
+			{
+				Global.curHealth++;
+			}
+			
 			removeAll();
 			loadedDoor_ = false;
 						
@@ -194,6 +203,24 @@ package com.hiring.worlds
 							{	
 								if (placeDoor == doorIndex)
 								{
+									toNextLevelTxt_.x = i * 32 - 32;
+									toNextLevelTxt_.y = j * 32;
+									if (j == 14)
+									{
+										toNextLevelTxt_.y -= 22;
+									}
+									
+									if (i == 19)
+									{
+										toNextLevelTxt_.x -= 50;
+										toNextLevelTxt_.y += 5;
+									}
+									else if (i == 0)
+									{
+										toNextLevelTxt_.x += 40;
+										toNextLevelTxt_.y += 5;
+									}
+									
 									loadedDoor_ = true;
 									continue;
 								}
@@ -212,11 +239,81 @@ package com.hiring.worlds
 				}
 			}
 			
+			var levelToLoad:int = FP.rand(Assets.LEVELS.length);
+			var enemiesToAdd:int = 0;
+			// Add enemy randomization here, checking to not place in plantlife
+			if (Global.level <= 3)
+			{
+				enemiesToAdd = 2;
+			}
+			else if (Global.level <= 8)
+			{
+				enemiesToAdd = 3;	
+			}
+			else if (Global.level <= 13)
+			{
+				enemiesToAdd = 4;	
+			}
+			else
+			{
+				enemiesToAdd = 5;
+			}
+			
 			// Add randomization here. This is rather weak, as this is my first roguelike
 			if (Global.level > 1)
 			{	
-				var levelToLoad:int = FP.rand(Assets.LEVELS.length);
-				var file:ByteArray = new Assets.LEVELS[levelToLoad];
+				if (Global.lastLevelLoaded == levelToLoad)
+				{
+					var plusMin:int = FP.rand(2);
+					if (plusMin == 1)
+					{
+						if (levelToLoad > 0)
+						{
+							levelToLoad--;
+						}
+						else
+						{
+							levelToLoad == Assets.LEVELS.length - 1;
+						}
+					}
+					else
+					{
+						var tempLength:int = Assets.LEVELS.length - 1;
+						if (levelToLoad < tempLength)
+						{
+							levelToLoad++;
+						}
+						else
+						{
+							levelToLoad = 0;
+						}
+					}
+				}
+				var file:ByteArray;
+				switch (enemiesToAdd)
+				{
+					case 2:
+					{
+						file = new Assets.LEVELS_2E[levelToLoad];
+						break;
+					}
+					case 3:
+					{
+						file = new Assets.LEVELS_3E[levelToLoad];
+						break;
+					}
+					case 4:
+					{
+						file = new Assets.LEVELS_4E[levelToLoad];
+						break;
+					}
+					case 5:
+					{
+						file = new Assets.LEVELS_5E[levelToLoad];
+						break;
+					}
+				}
+				
 				var str:String = file.readUTFBytes(file.length);
 				var xml:XML = new XML(str);
 				var e:Entity;
@@ -233,6 +330,21 @@ package com.hiring.worlds
 					this.add(new PlantLife(o.@x, o.@y, TREE));
 				}
 				
+				for each (o in xml.entities[0].monkey) 
+				{ 
+					this.add(new Monkey(o.@x, o.@y));
+				}
+				
+				for each (o in xml.entities[0].tiger) 
+				{ 
+					this.add(new Tiger(o.@x, o.@y));
+				}
+				
+				for each (o in xml.entities[0].lion) 
+				{ 
+					this.add(new Lion(o.@x, o.@y));
+				}
+				
 				if (int(xml.haveTiles) == 1)
 				{
 					for each (o in xml.tileset[0].tile) 
@@ -241,18 +353,81 @@ package com.hiring.worlds
 							(4 * (o.@ty / Global.grid)) + (o.@tx/Global.grid));
 					}
 				}
+				
+				Global.lastLevelLoaded = levelToLoad;
+			}
+			else
+			{
+				moveTxt_.centerOO();
+				moveTxt_.width = FP.width;
+				moveTxt_.x = FP.halfWidth;
+				moveTxt_.y = 80;
+				this.addGraphic(moveTxt_);
+				this.addGraphic(toNextLevelTxt_);
+				
+				this.add(new Monkey(350, 350));
+				levelToLoad = 1;
 			}
 			
-			// Add enemy randomization here, checking to not place in plantlife
-			FP.world.add(new Monkey(400, 375));
-
 			// Add powerup randomization here (cookies and ammo)
+			if (Global.level > 1)
+			{				
+				var dropPowerup:int = FP.rand(POWERUP_CHANCE);
+				var powerupType:int = FP.rand(POWERUP_COOKIE);
+				if (Global.dartCount <= 15)
+				{
+					powerupType = POWERUP_DART;
+				}
+				
+				if (dropPowerup == 0)
+				{
+					var pCoord:int = FP.rand(POWERUP_LOC);
+					var xC:int = 100;
+					var yC:int = 100;
+					switch (pCoord)
+					{
+						case 1:
+						{
+							xC = 100;
+							yC = 385;
+							break;
+						}
+						case 2:
+						{
+							xC = 530;
+							yC = 100;
+							break;
+						}
+						case 3:
+						{
+							xC = 275;
+							yC = 220
+							break;
+						}
+						case 4:
+						{
+							xC = 530;
+							yC = 385;
+							break;
+						}
+					}
+					
+					if (powerupType == 0)
+					{
+						FP.world.add(new PowerUp(xC, yC, POWERUP_COOKIE));	
+					}
+					else
+					{
+						FP.world.add(new PowerUp(xC, yC, POWERUP_DART));
+					}
+				}
+			}
 			
 			if (Global.level == 1)
 			{
-				FP.world.add(new DirectionSign(200, 175, "Testing"));
-				FP.world.add(new DirectionSign(350, 175, "testing again"));
-				FP.world.add(new DirectionSign(500, 175, "testing again"));
+				FP.world.add(new DirectionSign(200, 175, "Welcome to the savanna! So you're starting a zoo? Capture all the animals you can while here. Hey, while you're here, go capture that monkey down there!"));
+				FP.world.add(new DirectionSign(350, 175, "Press or hold the arrow keys to shoot. Your tranquilizer darts will put animals to sleep, allowing you to capture them with the space bar!"));
+				FP.world.add(new DirectionSign(500, 175, "These animals love chocolate chip cookies. Luckily you brought a few. Drop them by pressing the 'E' key."));
 			}
 			
 			Global.player = new Player(xCoord, yCoord);
