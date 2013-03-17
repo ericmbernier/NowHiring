@@ -58,6 +58,8 @@ package com.hiring
 			hud:HUD,			
 			player:Player,
 			MAX_HEALTH:int = 5,
+			START_DARTS:int = 75,
+			START_COOKIES:int = 2,
 			START_HEALTH:int = 5,
 			curHealth:int = START_HEALTH,
 			captureTxt:Text,

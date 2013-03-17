@@ -108,6 +108,8 @@ package com.hiring.worlds
 			Global.gameOver = false;
 			Global.paused = false;
 			Global.level = 0;
+			Global.dartCount = Global.START_DARTS;
+			Global.cookieCount = Global.START_COOKIES;
 			
 			gameByTxt_.x = 190;
 			gameByTxt_.y = 5;
